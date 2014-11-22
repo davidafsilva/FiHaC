@@ -1,4 +1,4 @@
-FiHaC
+FiHaC [ ![Build Status for davidafsilva/FiHaC](https://codeship.com/projects/2fdb2e40-54af-0132-107b-42ab35009c21/status)](https://codeship.com/projects/49234)
 =============
 FiHaC stands for File Hash and Cipher.
 It is intended to provide a small, but useful set of file related functionality, like hashing and
