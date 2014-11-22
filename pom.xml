@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>pt.davidafsilva</groupId>
+    <artifactId>fihac</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!-- SCM configuration -->
+    <scm>
+        <connection>scm:git:git@github.com:davidafsilva/FiHaC.git</connection>
+        <developerConnection>scm:git:git@github.com:davidafsilva/FiHaC.git</developerConnection>
+        <url>https://github.com/davidafsilva/FiHaC</url>
+        <tag>HEAD</tag>
+    </scm>
+    <!-- CI configuration -->
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://codeship.com/projects/49190</url>
+    </ciManagement>
+
+    <!-- project properties -->
+    <properties>
+        <!-- code encoding -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- compile dependencies versions -->
+        <slf4j.version>1.7.7</slf4j.version>
+
+        <!-- test dependencies versions -->
+        <junit.version>4.11</junit.version>
+        <logback.version>1.1.2</logback.version>
+
+        <!-- build dependencies versions -->
+        <maven.compiler.version>3.1</maven.compiler.version>
+        <maven.source.version>2.3</maven.source.version>
+        <maven.javadoc.version>2.10.1</maven.javadoc.version>
+        <javac.version>1.8</javac.version>
+        <maven.license.version>1.7</maven.license.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- build settings -->
+    <build>
+        <plugins>
+            <!-- java compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <source>${javac.version}</source>
+                    <target>${javac.version}</target>
+                </configuration>
+            </plugin>
+            <!-- license handling -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>${maven.license.version}</version>
+                <executions>
+                    <execution>
+                        <id>update-file-header</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test/java</root>
+                            </roots>
+                            <includes>
+                                <include>**/*.java</include>
+                            </includes>
+                            <licenseName>bsd_3</licenseName>
+                            <encoding>UTF-8</encoding>
+                            <inceptionYear>2014</inceptionYear>
+                            <organizationName>David Silva</organizationName>
+                            <projectName>FiHaC</projectName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
