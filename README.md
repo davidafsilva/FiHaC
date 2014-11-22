@@ -2,7 +2,7 @@ FiHaC
 =============
 FiHaC stands for File Hash and Cipher.
 It is intended to provide a small, but useful set of file related functionality, like hashing and
-ciphering/deciphering an user specified file.
+ciphering/deciphering a user specified file.
 
 
 Copyright &copy;
