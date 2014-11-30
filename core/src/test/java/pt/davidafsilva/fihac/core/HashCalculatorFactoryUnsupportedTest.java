@@ -34,35 +34,31 @@ package pt.davidafsilva.fihac.core;
  */
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.reflect.Whitebox;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
  * Unit tests for the {@link HashCalculatorFactory} class.
  *
  * @author david
  */
-public class HashCalculatorFactoryTest {
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(HashAlgorithm.class)
+public class HashCalculatorFactoryUnsupportedTest {
 
-  @Test
-  public void test_getInstance() {
-    assertNotNull(HashCalculatorFactory.getInstance());
-  }
-
-  @Test
-  public void test_singleton() {
-    final HashCalculatorFactory factory = HashCalculatorFactory.getInstance();
-    assertEquals(factory, HashCalculatorFactory.getInstance());
-  }
-
-  @Test
-  public void test_algorithmCreation() {
-    for (final HashAlgorithm algorithm : HashAlgorithm.values()) {
-      final HashCalculator calculator = HashCalculatorFactory.getInstance().create(algorithm);
-      assertNotNull(calculator);
-      assertTrue(calculator.getClass().getSimpleName().toUpperCase().startsWith(algorithm.name()));
-    }
+  @Test(expected = IllegalArgumentException.class)
+  public void test_unsupportedAlgorithm() {
+    final HashAlgorithm algorithm = mock(HashAlgorithm.class);
+    Whitebox.setInternalState(algorithm, "name", "UNSUPPORTED");
+    Whitebox.setInternalState(algorithm, "ordinal", 999);
+    mockStatic(HashAlgorithm.class);
+    when(HashAlgorithm.values()).thenReturn(new HashAlgorithm[]{algorithm});
+    HashCalculatorFactory.getInstance().create(algorithm);
   }
 }
