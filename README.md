@@ -6,6 +6,14 @@ ciphering/deciphering a user specified file.
 
 Currently, these are the supported algorithms:
 * [MD5](http://en.wikipedia.org/wiki/MD5)
+* [Whirlpool](http://en.wikipedia.org/wiki/Whirlpool_\(cryptography\))
+* [SHA-1](http://en.wikipedia.org/wiki/SHA-1)
+* [SHA-256](http://en.wikipedia.org/wiki/SHA-2)
+* [SHA-384](http://en.wikipedia.org/wiki/SHA-2)
+* [SHA-512](http://en.wikipedia.org/wiki/SHA-2)
+* [Keccak-256](http://en.wikipedia.org/wiki/SHA-3)
+* [Keccak-384](http://en.wikipedia.org/wiki/SHA-3)
+* [Keccak-512](http://en.wikipedia.org/wiki/SHA-3)
 
 Usage:
 ======
