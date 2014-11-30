@@ -1,4 +1,4 @@
-package pt.davidafsilva.fihac.core;
+package pt.davidafsilva.fihac.core.hash;
 
 /*
  * #%L
@@ -33,11 +33,45 @@ package pt.davidafsilva.fihac.core;
  * #L%
  */
 
+import com.saphir2.sphlib.Digest;
+import com.saphir2.sphlib.SHA512;
+
+import org.junit.Test;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 /**
- * The supported hash algorithm enumeration.
+ * Unit tests for the {@link Sha512HashCalculator} class.
  *
- * @author David Silva
+ * @author david
  */
-public enum HashAlgorithm {
-  MD5, WHIRLPOOL, SHA1, SHA256, SHA384, SHA512
+public class Sha512HashCalculatorTest {
+
+  @Test
+  public void test_algorithmCreation() {
+    final Sha512HashCalculator md5HashCalculator = new Sha512HashCalculator();
+    final Digest digest = md5HashCalculator.createHashAlgorithmInstance();
+    assertNotNull(digest);
+    assertEquals(SHA512.class, digest.getClass());
+  }
+
+  @Test
+  public void test_hash_computation() throws IOException {
+    final Path file = Files.createTempFile(Sha512HashCalculatorTest.class.getSimpleName(), ".tmp");
+    try (final Writer w = new FileWriter(file.toFile())) {
+      w.write("The quick brown fox jumps over the lazy dog");
+      w.flush();
+    }
+    assertEquals("07e547d9586f6a73f73fbac0435ed76951218fb7d0c8d788a" +
+                 "309d785436bbb642e93a252a954f23912547d1e8a3b5ed6e1" +
+                 "bfd7097821233fa0538f3db854fee6",
+                 new Sha512HashCalculator().calculate(file.toFile()));
+  }
 }
