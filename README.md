@@ -9,7 +9,8 @@ Currently, these are the supported algorithms:
 
 Usage:
 ======
-#### 1. Use the VaultBuilder to initialize a in-memory secure vault
+#### Use the HashCalculatorFactory to create a new HashCalculator instance for an arbitrary
+    <ALGORITHM_TYPE> (enumerated at HashAlgorithm)
 ```java
    final HashCalculator hashCalculator = HashCalculatorFactory.getInstance()
                             .create(HashAlgorithm.<ALGORITHM_TYPE>);
