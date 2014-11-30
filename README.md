@@ -9,7 +9,7 @@ Currently, these are the supported algorithms:
 
 Usage:
 ======
-#### Use the HashCalculatorFactory to create a new HashCalculator instance for an arbitrary <ALGORITHM_TYPE> (enumerated at HashAlgorithm)
+#### Use the HashCalculatorFactory to create a new HashCalculator instance for an arbitrary &ltALGORITHM_TYPE&gt (enumerated at HashAlgorithm)
 ```java
    final HashCalculator hashCalculator = HashCalculatorFactory.getInstance()
                             .create(HashAlgorithm.<ALGORITHM_TYPE>);
