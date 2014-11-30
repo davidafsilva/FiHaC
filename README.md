@@ -1,12 +1,23 @@
 FiHaC [![Build Status for davidafsilva/FiHaC](https://img.shields.io/codeship/2fdb2e40-54af-0132-107b-42ab35009c21/master.svg?style=flat-square)](https://codeship.com/projects/49234) [![Coverage Status for davidafsilva/FiHaC](http://img.shields.io/coveralls/davidafsilva/FiHaC/master.svg?style=flat-square)](https://coveralls.io/r/davidafsilva/FiHaC?branch=master)
-=============
+======
 FiHaC stands for File Hash and Cipher.
 It is intended to provide a small, but useful set of file related functionality, like hashing and
 ciphering/deciphering a user specified file.
 
+Currently, these are the supported algorithms:
+* [MD5](http://en.wikipedia.org/wiki/MD5)
+
+Usage:
+======
+#### 1. Use the VaultBuilder to initialize a in-memory secure vault
+```java
+   final HashCalculator hashCalculator = HashCalculatorFactory.getInstance()
+                            .create(HashAlgorithm.<ALGORITHM_TYPE>);
+```
+
 
 Copyright &copy;
----------
+=================
     Copyright (C) 2014 David Silva
  
     Redistribution and use in source and binary forms, with or without modification,
