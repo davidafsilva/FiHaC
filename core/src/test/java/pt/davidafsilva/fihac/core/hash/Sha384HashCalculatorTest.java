@@ -1,4 +1,4 @@
-package pt.davidafsilva.fihac.core;
+package pt.davidafsilva.fihac.core.hash;
 
 /*
  * #%L
@@ -33,11 +33,44 @@ package pt.davidafsilva.fihac.core;
  * #L%
  */
 
+import com.saphir2.sphlib.Digest;
+import com.saphir2.sphlib.SHA384;
+
+import org.junit.Test;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 /**
- * The supported hash algorithm enumeration.
+ * Unit tests for the {@link Sha384HashCalculator} class.
  *
- * @author David Silva
+ * @author david
  */
-public enum HashAlgorithm {
-  MD5, WHIRLPOOL, SHA1, SHA256, SHA384
+public class Sha384HashCalculatorTest {
+
+  @Test
+  public void test_algorithmCreation() {
+    final Sha384HashCalculator md5HashCalculator = new Sha384HashCalculator();
+    final Digest digest = md5HashCalculator.createHashAlgorithmInstance();
+    assertNotNull(digest);
+    assertEquals(SHA384.class, digest.getClass());
+  }
+
+  @Test
+  public void test_hash_computation() throws IOException {
+    final Path file = Files.createTempFile(Sha384HashCalculatorTest.class.getSimpleName(), ".tmp");
+    try (final Writer w = new FileWriter(file.toFile())) {
+      w.write("The quick brown fox jumps over the lazy dog");
+      w.flush();
+    }
+    assertEquals("ca737f1014a48f4c0b6dd43cb177b0afd9e5169367544c49" +
+                 "4011e3317dbf9a509cb1e5dc1e85a941bbee3d7f2afbc9b1",
+                 new Sha384HashCalculator().calculate(file.toFile()));
+  }
 }

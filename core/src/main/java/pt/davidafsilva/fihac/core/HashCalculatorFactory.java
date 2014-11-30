@@ -40,6 +40,7 @@ import java.util.function.Supplier;
 import pt.davidafsilva.fihac.core.hash.Md5HashCalculator;
 import pt.davidafsilva.fihac.core.hash.Sha1HashCalculator;
 import pt.davidafsilva.fihac.core.hash.Sha256HashCalculator;
+import pt.davidafsilva.fihac.core.hash.Sha384HashCalculator;
 import pt.davidafsilva.fihac.core.hash.WhirlpoolHashCalculator;
 
 /**
@@ -80,6 +81,7 @@ public final class HashCalculatorFactory {
     algorithmSupplier.put(HashAlgorithm.WHIRLPOOL, WhirlpoolHashCalculator::new);
     algorithmSupplier.put(HashAlgorithm.SHA1, Sha1HashCalculator::new);
     algorithmSupplier.put(HashAlgorithm.SHA256, Sha256HashCalculator::new);
+    algorithmSupplier.put(HashAlgorithm.SHA384, Sha384HashCalculator::new);
   }
 
   /**
