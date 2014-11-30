@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import pt.davidafsilva.fihac.core.hash.Keccak256HashCalculator;
 import pt.davidafsilva.fihac.core.hash.Md5HashCalculator;
 import pt.davidafsilva.fihac.core.hash.Sha1HashCalculator;
 import pt.davidafsilva.fihac.core.hash.Sha256HashCalculator;
@@ -84,6 +85,7 @@ public final class HashCalculatorFactory {
     algorithmSupplier.put(HashAlgorithm.SHA256, Sha256HashCalculator::new);
     algorithmSupplier.put(HashAlgorithm.SHA384, Sha384HashCalculator::new);
     algorithmSupplier.put(HashAlgorithm.SHA512, Sha512HashCalculator::new);
+    algorithmSupplier.put(HashAlgorithm.KECCAK256, Keccak256HashCalculator::new);
   }
 
   /**
