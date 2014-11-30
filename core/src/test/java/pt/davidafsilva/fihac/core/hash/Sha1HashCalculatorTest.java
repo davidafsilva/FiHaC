@@ -1,4 +1,4 @@
-package pt.davidafsilva.fihac.core;
+package pt.davidafsilva.fihac.core.hash;
 
 /*
  * #%L
@@ -33,11 +33,43 @@ package pt.davidafsilva.fihac.core;
  * #L%
  */
 
+import com.saphir2.sphlib.Digest;
+import com.saphir2.sphlib.SHA1;
+
+import org.junit.Test;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 /**
- * The supported hash algorithm enumeration.
+ * Unit tests for the {@link Sha1HashCalculator} class.
  *
- * @author David Silva
+ * @author david
  */
-public enum HashAlgorithm {
-  MD5, WHIRLPOOL, SHA1
+public class Sha1HashCalculatorTest {
+
+  @Test
+  public void test_algorithmCreation() {
+    final Sha1HashCalculator md5HashCalculator = new Sha1HashCalculator();
+    final Digest digest = md5HashCalculator.createHashAlgorithmInstance();
+    assertNotNull(digest);
+    assertEquals(SHA1.class, digest.getClass());
+  }
+
+  @Test
+  public void test_hash_computation() throws IOException {
+    final Path file = Files.createTempFile(Sha1HashCalculatorTest.class.getSimpleName(), ".tmp");
+    try (final Writer w = new FileWriter(file.toFile())) {
+      w.write("The quick brown fox jumps over the lazy dog");
+      w.flush();
+    }
+    assertEquals("2fd4e1c67a2d28fced849ee1bb76e7391b93eb12",
+                 new Sha1HashCalculator().calculate(file.toFile()));
+  }
 }

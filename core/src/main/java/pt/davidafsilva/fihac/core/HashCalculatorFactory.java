@@ -38,6 +38,8 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import pt.davidafsilva.fihac.core.hash.Md5HashCalculator;
+import pt.davidafsilva.fihac.core.hash.Sha1HashCalculator;
+import pt.davidafsilva.fihac.core.hash.WhirlpoolHashCalculator;
 
 /**
  * The factory for the creation of {@link HashCalculator} instances.
@@ -74,6 +76,8 @@ public final class HashCalculatorFactory {
    */
   private void initializeSuppliers() {
     algorithmSupplier.put(HashAlgorithm.MD5, Md5HashCalculator::new);
+    algorithmSupplier.put(HashAlgorithm.WHIRLPOOL, WhirlpoolHashCalculator::new);
+    algorithmSupplier.put(HashAlgorithm.SHA1, Sha1HashCalculator::new);
   }
 
   /**
