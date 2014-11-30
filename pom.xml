@@ -57,7 +57,20 @@
         <maven.coveralls.version>3.0.1</maven.coveralls.version>
     </properties>
 
+    <!-- add our repo for the sphlib -->
+    <repositories>
+        <repository>
+            <id>sphlib-mvn-repo</id>
+            <url>https://raw.github.com/davidafsilva/sphlib/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
